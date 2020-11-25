@@ -40,11 +40,52 @@ namespace GuestBook.Classes
 
         // :::::::::::::: Methods ::::::::::::::::::::::::
 
+
+
+        // Start the whole program
+        public static void startMethod()
+        {
+            WriteLine("\n:::::::::::::::::::::::::::::::::::::::::::::");
+            WriteLine(":::::::::::     B J Ö R N S   ::::::::::::::::");
+            WriteLine(":::::::::::  G U E S T B O O K   ::::::::::::");
+            WriteLine(":::::::::::::::::::::::::::::::::::::::::::::\n\n");
+            WriteLine("Använt tangenterna för att navigera\n");
+            WriteLine("1. Skriv i gästboken");
+            WriteLine("2. Ta bort inlägg\n");
+            WriteLine("X. Avsluta\n\n");
+
+
+            // Deserialize JSON to list object and show messages
+            var filePath = @"C:\Users\Ny ägare\Documents\Webbprogrammering\cSharp\moment3\GuestBook\GuestBook\Files\book.json";
+
+            // Create new empty listobjct
+            List<Post> listPosts = new List<Post>();
+            var inList = Post.getJson(filePath);
+
+            // Test if listobject isn null = empty, 
+            if (inList == null)
+            {
+                Post.WriteList(listPosts);
+            }
+            else
+            {
+                listPosts = inList;
+                Post.WriteList(listPosts);
+            }
+
+
+            // method controlls indata att then starts the right methods, returns a string of the oprion
+            string optionIN = Controller.StartCheck();
+
+
+            // Method to start diferent methods depending on the options choosen by user
+            Post.start(listPosts, optionIN);
+
+        }
+
         public static List<Post> getJson(string filePath)
         {
 
-          
-    
                 using (var tw = new StreamWriter(filePath, true))
                 {
                     if (!File.Exists(filePath))
@@ -59,19 +100,6 @@ namespace GuestBook.Classes
 
 
 
-
-
-           /* if (!File.Exists(filePath))
-            {
-               File.Create(filePath);
-                string json = "[]";
-                using (var tw = new StreamWriter(filePath, true))
-                {
-                    tw.WriteLine(json.ToString());
-                    tw.Close();
-                }
-
-            }*/
             // Intake JSON
             string streamresult = null;
             using (var sr = new StreamReader(filePath, true))
@@ -108,6 +136,7 @@ namespace GuestBook.Classes
 
         }
 
+        // check what choose user make
         public static void start(List<Post> listPosts, string input)
         {
             switch (input)
@@ -229,7 +258,7 @@ namespace GuestBook.Classes
                 tw.WriteLine(json.ToString());
                 tw.Close();
             }
-
+            startMethod();
         }
     }
 }
