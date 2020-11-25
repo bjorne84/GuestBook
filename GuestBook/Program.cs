@@ -11,7 +11,9 @@ namespace GuestBook
     class Program
     {
         static void Main(string[] args)
+
         {
+            // Kicks everything "igång" as we say in Swedish.
             Post.startMethod();
         }
     }

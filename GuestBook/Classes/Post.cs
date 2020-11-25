@@ -136,7 +136,10 @@ namespace GuestBook.Classes
 
         }
 
-        // check what choose user make
+        /// <summary>
+        /// Forward users to create, delete or end program 
+        /// </summary>
+        /// /// <param name="listPosts" name="input"></param>
         public static void start(List<Post> listPosts, string input)
         {
             switch (input)
@@ -153,8 +156,12 @@ namespace GuestBook.Classes
                     break;
             }
         }
+        
 
-        // Delete list
+        /// <summary>
+        /// Delete listpost object from userinput, test that it´s valid input and then calls the savejson method
+        /// </summary>
+        /// /// <param name="listPosts"></param>
         public static void deleteList(List<Post> listPosts)
         {
 
@@ -187,7 +194,10 @@ namespace GuestBook.Classes
 
         }
 
-
+        /// <summary>
+        /// Inserts new messages in list objekt.
+        /// </summary>
+        /// /// <param name="listPosts"></param>
         public static void insertNewMsg(List<Post> listPosts)
         {
         startMsg:
@@ -226,7 +236,10 @@ namespace GuestBook.Classes
             saveJson(listPosts);
         }
 
-        // Method to save list to JSON-file
+        /// <summary>
+        /// Method to save list to JSON-file
+        /// </summary>
+        /// <param name="listPosts"></param>
         public static void saveJson(List<Post> listPosts)
         {
             string json = JsonConvert.SerializeObject(listPosts, Formatting.Indented);
